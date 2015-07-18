@@ -1,0 +1,132 @@
+.container {
+	width: 90%;
+	max-width: 940px;
+	margin: 0 auto;
+	padding-bottom: 50px;
+	background-color: #F0F0EE;
+}
+/*sliders*/
+.am-slider-default {
+	background-color: #F0F0EE;
+	.bookGroup {
+		width: 100%;
+		padding: 20px 45px 0 45px;
+		.singleBook {
+			display: inline-block;
+			border-radius: 10px;
+			width: 32%;
+			height: auto;
+			font-size: 0;
+			.img {
+				height: 90%;
+				overflow: hidden;
+				cursor: pointer;
+			}
+			p {
+				display: block;
+				text-align: center;
+				box-sizing: border-box;
+				line-height: 36px;
+				font-size: 15px;
+				height: 10%;
+				background-color: #fff;
+			}
+		}
+	}
+}
+/*basic bookInfo*/
+.am-accordion-content {
+	p {
+		color: #000;
+		font-size: 14px;
+	}
+}
+.am-accordion-title {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+}
+/* modify some pattern from the amazeUI */
+.am-slider-default .am-control-nav li a {
+	background-color: rgba(252, 10, 10, 0.5);
+	&:hover {
+		background-color: rgba(95, 255, 2, 0.7);
+	}
+}
+
+.am-accordion-gapped .am-active .am-accordion-title {
+	background-color: #fff;
+}
+
+#accordion {
+	margin-top: 50px;
+}
+
+/*click to top*/
+.toTop {
+	position: fixed;
+	bottom: 50px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	border-radius: 60px;
+}
+
+/*offcanvas 侧边栏*/
+.am-offcanvas-bar {
+	width: 80%;
+	max-width: 500px;
+}
+/*for small screen*/
+@media (max-width: 550px) {
+	.big, .medium {
+		display: none;
+	}
+	.toTop {
+		width: 20px;
+		height: 20px;
+		right: 5px;
+		bottom: 10px;
+	}
+	.am-slider-default.small {
+		display: block;
+		.singleBook {
+			width: 100%;
+		}
+		.img {
+			height: auto;
+		}
+	}
+	.am-offcanvas-bar {
+		width: 90%;
+	}
+}
+/*for medium screen*/
+@media (min-width: 551px) and (max-width: 900px) {
+	.big, .small {
+		display: none;
+	}
+	.am-slider-default.medium {
+		.singleBook {
+			width: 45%;
+		}
+	}
+	.toTop {
+		width: 30px;
+		height: 30px;
+		right: 10px;
+		bottom: 20px;
+	}
+}
+/*for large screen*/
+@media (min-width: 901px) {
+	.medium, .small {
+		display: none;
+	}
+	.big {
+		display: block;
+	}
+}
+
+
+

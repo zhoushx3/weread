@@ -1,0 +1,36 @@
+#addNoteContainer {
+	width: 90%;
+	margin: 10px auto;
+	display: none;
+	color: #fff;
+	form {
+		.formGroup {
+			width: 100%;
+			margin-bottom: 10px;
+			textarea {
+				width: 94%;
+			}
+		}
+
+		.formGroup:nth-child(1), .formGroup:nth-child(2) {
+			display: inline-block;
+			width: 46%;
+			margin-right: 2%;
+			input	{
+				width: 100%;
+			}
+		}
+
+		.am-form-file {
+			cursor: pointer;
+		}
+	}
+}
+
+@media (max-width: 550px) {
+	form {
+		.formGroup:nth-child(1), .formGroup:nth-child(2) {
+			width: 90%;
+		}
+	}
+}
