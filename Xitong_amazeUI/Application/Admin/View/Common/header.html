@@ -1,0 +1,23 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">书语后台</a>
+    <ul style="float: none" class="nav">
+      <li><a href="__URL__/background">首 页</a></li>
+      <li><a href="__URL__/manageUser">管理用户</a></li>
+      <li><a href="__URL__/manageBook">管理图书</a></li>
+      <li style="float: right"><a href="__URL__/logout">登 出</a></li>
+      <li style="float: right; font-size: 12px; margin-right: 50px"><a href="#">当前时间: <?php echo date("Y-m-d ", $nowTime) ?></a></li>
+    </ul>
+  </div>
+</div>
+<script>
+	$(document).ready(function() {
+		var path = window.location.href;
+		if (path.indexOf('BackGround') >= 0)
+			$('ul.nav li').eq(0).addClass('active');
+		else if (path.indexOf('User') >= 0)
+			$('ul.nav li').eq(1).addClass('active');
+		else
+			$('ul.nav li').eq(2).addClass('active');
+	});
+</script>

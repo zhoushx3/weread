@@ -1,0 +1,129 @@
+<?php
+	$user = getUsername();
+?>
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/allBooks.less">
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/addNote.less">
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/bookAllNotes.less">
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/comments.less">
+<include file="Common/header" />
+
+<div class="container">
+	<!-- big screen -->
+	<div class="am-slider am-slider-default big" data-am-flexslider>
+	  <ul class="am-slides">
+	  	<volist name="allBooks" id="list" mod="3">
+				<eq name="mod" value="0">
+					<!-- volist并没有影响到浏览器对标签的识别过程，就是php引擎看到什么就解释什么，不会在输出标签时发现不完整就给它补全，补全时浏览器的解析HTML的事情-->
+					<li><div class="bookGroup">
+						<div class="singleBook" style="margin-right: 2%;">
+							<div class="img">
+								<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$list[picture] | default='1.jpg'}" data-id="{$list[id]}">
+							</div>
+							<p>{$list[bookname]}</p>
+						</div>
+				</eq>
+				<eq name="mod" value="1">
+					<div class="singleBook" style="margin-right: 2%;">
+						<div class="img">
+							<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$list[picture] | default='1.jpg'}" data-id="{$list[id]}">
+						</div>
+						<p>{$list[bookname]}</p>
+					</div>
+				</eq>
+				<eq name="mod" value="2">
+					<div class="singleBook">
+						<div class="img">
+							<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$list[picture] | default='1.jpg'}" data-id="{$list[id]}">
+						</div>
+						<p>{$list[bookname]}</p>
+					</div>
+					</div></li>
+					<!-- li nail -->
+				</eq>
+			</volist>
+	  </ul>
+	</div>
+	<!-- medium screen -->
+	<div class="am-slider am-slider-default medium" data-am-flexslider>
+	  <ul class="am-slides">
+	  	<volist name="allBooks" id="list" mod="2">
+				<eq name="mod" value="0">
+					<li><div class="bookGroup">
+						<div class="singleBook" style="margin-right: 10%">
+							<div class="img">
+								<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$list[picture] | default='1.jpg'}" data-id="{$list[id]}">
+							</div>
+							<p>{$list[bookname]}</p>
+						</div>
+				</eq>
+				<eq name="mod" value="1">
+					<div class="singleBook">
+						<div class="img">
+							<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$list[picture] | default='1.jpg'}" data-id="{$list[id]}">
+						</div>
+						<p>{$list[bookname]}</p>
+					</div>
+					</div></li>
+					<!-- li nail -->
+				</eq>
+			</volist>
+	  </ul>
+	</div>
+	<!-- small screen -->
+	<div class="am-slider am-slider-default small" data-am-flexslider>
+	  <ul class="am-slides">
+	  	<volist name="allBooks" id="list">
+				<li><div class="bookGroup">
+					<div class="singleBook">
+						<div class="img">
+							<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$list[picture] | default='1.jpg'}" data-id="{$list[id]}">
+						</div>
+						<p>{$list[bookname]}</p>
+					</div>
+				</div></li>
+			</volist>
+	  </ul>
+	</div>
+
+
+	<section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }' data-url="__URL__">
+	  <dl class="am-accordion-item am-active">
+	    <dt class="am-accordion-title">图 书 信 息 <small> -点击上面图书-</small></dt>
+	    <dd class="am-accordion-bd am-collapse am-in">
+	      <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+	      <div class="am-accordion-content"></div>
+	    </dd>
+	  </dl>
+	  <dl class="am-accordion-item">
+	    <dt class="am-accordion-title">图 书 简 介</dt>
+	    <dd class="am-accordion-bd am-collapse ">
+	      <div class="am-accordion-content"></div>
+	    </dd>
+	  </dl>
+	 	<dl class="am-accordion-item">
+	    <dt class="am-accordion-title" id="bookNote" data-am-offcanvas="{target: '#bookNoteCanvas'}">图 书 笔 记</dt>
+	  </dl>
+	  <dl class="am-accordion-item">
+	    <dt class="am-accordion-title" id="bookReview" data-am-offcanvas="{target: '#bookPreviewCanvas'}">图 书 评 论</dt>
+	  </dl>
+	</section>
+</div>
+
+<!-- 图 书 笔 记 -->
+<div id="bookNoteCanvas" class="am-offcanvas">
+  <div class="am-offcanvas-bar">
+		<include file="Notes/bookAllNotes" />
+  </div>
+</div>
+
+
+<!-- 图 书 评 论 -->
+<div id="bookPreviewCanvas" class="am-offcanvas">
+  <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+		<include file="Comments/comments" />
+  </div>
+</div>
+
+<button data-am-smooth-scroll class="toTop" title="滚到顶部">^</button>
+
+<script src="__PUBLIC__/js/allBooks.js"></script>

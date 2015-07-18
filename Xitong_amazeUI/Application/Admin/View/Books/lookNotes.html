@@ -1,0 +1,92 @@
+<?php
+	$user = getUsername();
+?>
+
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/comments.less">
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/manageBook.less">
+
+<div class="container">
+	<h3>书的信息</h3>
+	<!-- 书的信息 -->
+	<div id="book">
+		<h5>{$bookInfo[bookname]}</h5>
+		<img src="/Xitong/Uploads/BookPhotoes/{$bookInfo[picture] | default='1.jpg'}">
+		<div id="bookInfo">
+			<p><span>作&ensp;者:</span> {$bookInfo[author]}</p>
+			<p><span>出版社:</span> {$bookInfo[press]}</p>
+			<p><span>ISBN:</span> {$bookInfo[isbn]}</p>		
+			<p class="bookSummary"><span>内容简介:</span> {$bookInfo[summary]}</p>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<!-- 笔记列表 -->
+	<h3>笔记列表</h3>
+	<table id="list" class="table table-hover table-condensed">
+		<thead>
+			<tr>
+				<th>用户头像</th>
+				<th>用户名</th>
+				<th>章节</th>
+				<th>页码</th>
+				<th>笔记内容</th>
+				<th>附带图片</th>
+				<th>是否公开</th>
+				<th>记录时间</th>
+				<th>.</th>
+			</tr>
+		</thead>
+		<tbody>
+			<for start="0" end="$allNotesCount">
+				<tr>
+					<td align="center"><img src="{$userHead | default='__PUBLIC__/img/1.jpg'}" alt="用户头像" /></td>
+					<td align="center"><a href="#">{$allNotes[$i][username]}</a></td>
+					<td align="center">{$allNotes[$i][chapter]}</td>
+					<td align="center">{$allNotes[$i][page]}</td>
+					<td align="center">{$allNotes[$i][note]}</td>
+					<td align="center"><img src="/Xitong/Uploads/NotePhotoes/{$allNotes[$i][photo] | default='1.jpg'}" alt="."></td>
+					<td align="center">{$allNotes[$i]['public']}</td>
+					<td align="center"><span><?php echo date("Y-m-d ", $allNotes[$i][create_time]) ?></span></td>
+					<td align="center"><button class="btn-warning" data-toggle="modal" data-target="#delete" data-id="{$allNotes[$i][id]}" data-url="__URL__/deleteNote">Delete</button></td>
+				</tr>
+			</for>
+		</tbody>
+	</table>
+</div>
+
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	     <div class="modal-body">
+	        确定要删除这条笔记吗？
+	     </div>
+	     <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-danger">删除</button>
+	     </div>
+	  </div><!-- /.modal-content -->
+	</div>
+</div><!-- /.modal -->
+
+<script>
+	$(document).ready(function() {
+		var noteId;
+		var url;
+		$('button.btn-warning').click(function() {
+			noteId = $(this).attr('data-id');
+			url = $(this).attr('data-url');
+		});
+		$('.btn-danger').click(function() {
+			$.ajax({
+				type: "post",
+				data: {id: noteId},
+				url: url,
+				success: function(data) {
+					window.location.reload();
+				}
+			});
+		});
+	});
+</script>
+

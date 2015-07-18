@@ -1,0 +1,20 @@
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/Flogin.less">
+
+
+	<div id="Flogin" class="container">
+		<div class="login_img"></div>
+		<form action="__URL__/loginin/{$gogo}" method="post" class="form-horizontal" role="form">
+			<div>
+		    <label for="username" class="col-sm-2">用户名</label>
+	      <input type="text" class="form-control" name="username" placeholder="username">
+		  </div>
+		  <div>
+		    <label for="password" class="col-sm-2">密码 </label>
+		    <input type="password" class="form-control" name="password" placeholder="password">
+		  </div>
+		  <div>
+		    <input type="submit" class="btn btn-primary" value="登 录" />
+	  		<a href="{:U(register)}" class="signUp">注 册</a>
+  		</div>
+		</form>
+	</div>

@@ -1,0 +1,57 @@
+
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/common.less">
+
+<ul class="hidden_menu">
+	<li>
+		<a class="clickNote" href="__URL__/myAllNotes">我的笔记</a>
+	</li>
+	<li>
+		<a class="clickNote" href="__URL__/allNotes">所有笔记</a>
+	</li>
+	<li>
+		<a class="clickNote" href="__URL__/allBooks">所有书目</a>
+	</li>
+</ul>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">用户: {$user | default="未登录"}</a>
+    <ul style="float: none" class="nav">
+			<li style="float: right" class="shortShow">
+				<a class="showMore" href="#">更多</a>
+			</li>
+      <li style="float: right" class="wideShow"><a href="__URL__/allBooks">所有书目</a></li>
+      <li style="float: right" class="wideShow"><a href="__URL__/allNotes">所有笔记</a></li>
+      <li style="float: right" class="wideShow"><a href="__URL__/myAllNotes">我的笔记</a></li>
+      <notempty name="user">
+      	<li ><a href="__URL__/logout">登 出</a></li>
+			</notempty>
+    </ul>
+  </div>
+</div>
+<script>
+	$(document).ready(function() {
+		// 根据url高亮导航项
+		var path = window.location.href;
+		if (path.indexOf('myAllNotes') >= 0)
+			$('ul.nav li').eq(3).addClass('active');
+		else if (path.indexOf('allNotes') >= 0)
+			$('ul.nav li').eq(2).addClass('active');
+		else if (path.indexOf('allBooks') >= 0)
+			$('ul.nav li').eq(1).addClass('active');
+		else;
+		// 点击更多按钮显示菜单
+		$('a.showMore').click(function(event) {
+			var posL = $(this).offset().left;
+			var posT = $(this).offset().top;
+			$('.hidden_menu').toggleClass('active');
+		});
+		// 调整屏幕大小的时候菜单应当消失
+		$(window).resize(function() {
+			$('.hidden_menu').removeClass('active');
+		})
+	});
+	
+</script>
+
+	

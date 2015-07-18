@@ -1,0 +1,54 @@
+<!-- 扫描进入后的页面 -->
+<?php
+	$user = getUsername();
+?>
+
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/singleComments.less">
+<include file="Common/header" />
+
+<div class="container">
+<!-- 书的信息 -->
+	<div id="book">
+		<h5>{$bookInfo[bookname]}</h5>
+		<img src="/Xitong/Uploads/BookPhotoes/{$bookInfo[picture] | default='1.jpg'}">
+		<div id="bookInfo">
+			<p><span>作&ensp;者:</span> {$bookInfo[author]}</p>
+			<p><span>出版社:</span> {$bookInfo[press]}</p>
+			<p><span>ISBN:</span> {$bookInfo[isbn]}</p>		
+			<div id="clickZan">
+		    <span>{$bookzanCount}</span>
+				<if condition = "$userDianzan eq 1">
+					<div class="heart" data-url="__URL__/dianzan/"> </div>
+				<else />
+					<div class="heart active" data-url="__URL__/dianzan/"> </div>
+				</if>
+			</div>
+			<p class="bookSummary"><span>内容简介:</span> {$bookInfo[summary]}</p>
+		</div>
+	</div>
+
+	<!-- 添加新评论 -->
+	<div id="addComment">
+		<h5>添加新评论</h5>
+		<form method="post" action="__URL__/addComment">
+			<textarea name='comment' id='comment' rows="2" placeholder="......评论......"></textarea>
+			<input type="submit" value="提交">
+		</form>
+	</div>
+
+	<!-- 书评列表 -->
+	<h5>书评列表</h5>
+	<for start="0" end="$commentsCount">
+		<div class="commentsList">
+			<img src="{$userHead | default='__PUBLIC__/img/1.jpg'}" alt="用户头像" />
+			<div>
+				<a href="#">{$commentsList[$i][username]}</a>
+				<p>{$commentsList[$i][comment]}</p>
+				<span><?php echo date("Y-m-d ", $commentsList[$i][create_time]) ?></span>
+			</div>
+		</div>
+	</for>
+</div>
+
+
+<script src="__PUBLIC__/js/singleComments.js"></script>

@@ -1,0 +1,83 @@
+
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/manage.less">
+<div class="container">
+
+	<a href="__URL__/addBook">添加书籍--></a>
+
+	<h3>书目列表</h3>
+	<table id="list" class="table table-hover table-condensed">
+		<thead>
+			<tr>
+				<th>封面</th>
+				<th>书名</th>
+				<th>作者</th>
+				<th>出版社</th>
+				<th>ISBN</th>
+				<th>简介</th>
+				<th>.</th>
+			</tr>
+		</thead>
+		<tbody>
+			<for start="0" end="$countBooks">
+				<tr>
+					<td align="center">
+						<img src="/Xitong_amazeUI/Uploads/BookPhotoes/{$allBooks[$i][picture] | default='1.jpg'}">
+
+					</td>
+					<td align="center">{$allBooks[$i][bookname]}</td>
+					<td align="center">{$allBooks[$i][author]}</td>
+					<td align="center">{$allBooks[$i][press]}</td>
+					<td align="center">{$allBooks[$i][isbn]}</td>
+					<td align="center">{$allBooks[$i][summary]}</td>
+					<td align="center" class="buttons">
+						<button class="btn-warning" data-toggle="modal" data-target="#delete" data-id="{$allBooks[$i][id]}" data-book="{$allBooks[$i][bookname]}" data-url="__URL__/deleteBook">Delete</button>
+						<form method="post" action="__URL__/lookComments">
+							<input type="hidden" name="id" value="{$allBooks[$i][id]}" />
+							<input class="btn-link" type="submit" value="书评" />
+						</form>
+						<form method="post" action="__URL__/lookNotes">
+							<input type="hidden" name="id" value="{$allBooks[$i][id]}" />
+							<input class="btn-link" type="submit" value="笔记" />
+						</form>
+					</td>
+				</tr>
+			</for>
+		</tbody>
+	</table>
+</div>
+
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	     <div class="modal-body">
+	        确定要删除图书 “ <span class="delBook"></span> ” 吗？
+	     </div>
+	     <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-danger">删除</button>
+	     </div>
+	  </div><!-- /.modal-content -->
+	</div>
+</div><!-- /.modal -->
+
+<script>
+	$(document).ready(function() {
+		var bookId;
+		var url;
+		$('button.btn-warning').click(function() {
+			$('span.delBook').text($(this).attr('data-book'));
+			bookId = $(this).attr('data-id');
+			url = $(this).attr('data-url');
+		});
+		$('.btn-danger').click(function() {
+			$.ajax({
+				type: "post",
+				data: {id: bookId},
+				url: url,
+				success: function(data) {
+					window.location.reload();
+				}
+			});
+		});
+	});
+</script>

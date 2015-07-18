@@ -1,0 +1,33 @@
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/addNote.less">
+
+<div class="container">
+	<h5>添加新的书籍</h5>
+	<form method="post" action="__URL__/addBookin" enctype="multipart/form-data">
+		<div>
+			<label for="chapter">书名</label>
+			<input type="text" name="bookname" placeholder="一" />
+		</div>
+		<div>
+			<label for="page">出版社</label>
+			<input type="text" name="press" placeholder="1" />
+		</div>
+		<div>
+			<label for="page">ISBN</label>
+			<input type="text" name="ISBN" placeholder="1" />
+		</div>
+		<div>
+			<label for="page">作者</label>
+			<input type="text" name="author" placeholder="1" />
+		</div>
+
+		<div>
+			<label for="note">简介</label>
+			<textarea name='summary' id='note' rows="6" placeholder="......简介......"></textarea>
+		</div>
+		<div>
+			<label for="photo">上传图片</label>
+			<input type="file" name="photo" />
+		</div>
+		<input type="submit" value="提交">
+	</form>
+</div>

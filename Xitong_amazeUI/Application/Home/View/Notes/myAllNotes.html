@@ -1,0 +1,33 @@
+<?php
+	$user = getUsername();
+?>
+
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/myBookNotes.less">
+<include file="Common/header" />
+
+<div class="container">
+
+	<!-- 笔记列表 -->
+	<h5>笔记列表</h5>
+	<for start="0" end="$allNotesCount">
+		<div class="bookAllNotesList">
+			<for start = "0" end="$bookInfoCount" name="j">
+				<if condition="$bookInfo[$j][id] eq $allNotes[$i][bookid]">
+					<h5>书名: {$bookInfo[$j][bookname]}</h5>
+				</if>
+			</for>
+			<div class="NoteBasic">
+				<p>章节:  {$allNotes[$i][chapter]}</p>
+				<p>页码:  {$allNotes[$i][page]}</p>
+			</div>
+			<div class="NoteInfo">
+				<p>{$allNotes[$i][note]}</p>
+				<img src="/Xitong_amazeUI/Uploads/NotePhotoes/{$allNotes[$i][photo] | default='55850c7b8b5b3.jpg'}" alt=".">
+				<span><?php echo date("Y-m-d ", $allNotes[$i][create_time]) ?></span>
+				<form method="post" action="__URL__/editNote/noteId/{$allNotes[$i][id]}">
+					<input type="submit" value="修改">
+				</form>
+			</div>
+		</div>
+	</for>
+</div>

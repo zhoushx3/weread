@@ -1,0 +1,51 @@
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/background.less">
+
+<?php
+	$arrayBook = "";
+	$arrayNoteEvery = "";
+	$arrayComment = "";
+	$arrayUserEvery = "";
+	foreach($bookCount as $key=>$value) {
+		$arrayBook = $arrayBook.$value.'-';
+	}
+	$arrayBook = $arrayBook.$bookAllCount;
+	foreach ($noteEveryCount as $key => $value) {
+		$arrayNoteEvery = $arrayNoteEvery.$value.'-';
+	}
+	$arrayNoteEvery = strrev(substr($arrayNoteEvery, 0, -1));
+	foreach ($commentCount as $key => $value) {
+		$arrayComment = $arrayComment.$value.'-';
+	}
+	$arrayComment = $arrayComment.$commentAllCount;
+	// 用户信息
+	foreach ($userEveryCount as $key => $value) {
+		$arrayUserEvery = $arrayUserEvery.$value.'-';
+	}
+	$arrayUserEvery = strrev(substr($arrayUserEvery, 0, -1));
+?>
+
+
+	<div class="container">
+		<div class="canvas">
+			<canvas id="userEveryCount" data-data="{$arrayUserEvery}"></canvas>
+			<h3>用户数目统计</h3>
+		</div>
+		<div class="canvas">
+			<canvas id="bookCount" data-data="{$arrayBook}"></canvas>
+			<h3>书数目统计</h3>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="canvas">
+			<canvas id="commentCount" data-data="{$arrayComment}"></canvas>
+			<h3>评论数目统计</h3>
+		</div>
+		<div class="canvas">
+			<canvas id="noteEveryCount" data-data="{$arrayNoteEvery}"></canvas>
+			<h3>笔记数目统计</h3>
+		</div>
+	</div>
+
+<script src="__PUBLIC__/js/char.js"></script>
+<script src="__PUBLIC__/js/chart.js"></script>

@@ -1,0 +1,36 @@
+
+<div id="bookReviewContainer">
+	<!-- 书的信息 -->
+	<!-- <div id="clickZan" data-url="__URL__/zan">
+    <span></span>
+		<div class="heart" data-url="__URL__/dianzan/"> </div>
+		</if>
+	</div>
+ -->
+	<!-- 添加新评论 -->
+	<div id="addComment">
+		<h5>添加新评论</h5>
+		<form method="post" action="__URL__/addComment">
+			<textarea name='comment' id='comment' rows="2" placeholder="......评论......"></textarea>
+			<input type="submit" class="am-btn am-btn-secondary am-btn-xs" value="提交">
+		</form>
+	</div>
+
+	<!-- 书评列表 -->
+	<h5>书评列表</h5>
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+	  <div class="am-list-news-bd">
+	    <ul class="am-list">
+	      <li class="am-g am-list-item-desced">
+	        <a class="am-list-item-hd"></a>
+	        <div class="am-list-item-text"></div>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+
+</div>
+
+
+<script src="__PUBLIC__/js/comments.js"></script>
+

@@ -1,0 +1,60 @@
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/manage.less">
+<div class="container">
+	<h3>用户列表</h3>
+	<table id="list" class="table table-hover table-condensed">
+		<thead>
+			<tr>
+				<th>用户名</th>
+				<th>用户密码</th>
+				<th>用户邮箱</th>
+				<th>.</th>
+			</tr>
+		</thead>
+		<tbody>
+			<for start="0" end="$userCount">
+				<tr>
+					<td align="center">{$userAll[$i][username]}</td>
+					<td align="center">{$userAll[$i][password]}</td>
+					<td align="center">{$userAll[$i][email]}</td>
+					<td align="center"><button class="btn-warning" data-toggle="modal" data-target="#delete" data-id="{$userAll[$i][id]}" data-user="{$userAll[$i][username]}" data-url="__URL__/deleteUser">Delete</button></td>
+				</tr>
+			</for>
+		</tbody>
+	</table>
+</div>
+
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	     <div class="modal-body">
+	        确定要删除用户 “ <span class="delUserName"></span> ” 吗？
+	     </div>
+	     <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-danger">删除</button>
+	     </div>
+	  </div><!-- /.modal-content -->
+	</div>
+</div><!-- /.modal -->
+
+<script>
+	$(document).ready(function() {
+		var userId;
+		var url;
+		$('button.btn-warning').click(function() {
+			$('span.delUserName').text($(this).attr('data-user'));
+			userId = $(this).attr('data-id');
+			url = $(this).attr('data-url');
+		});
+		$('.btn-danger').click(function() {
+			$.ajax({
+				type: "post",
+				data: {id: userId},
+				url: url,
+				success: function(data) {
+					window.location.reload();
+				}
+			});
+		});
+	});
+</script>

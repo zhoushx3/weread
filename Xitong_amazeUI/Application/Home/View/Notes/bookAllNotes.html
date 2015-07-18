@@ -1,0 +1,44 @@
+
+<div id="bookNoteContainer">
+	<!-- 添加新笔记 -->
+	<div id="addNote">
+		<h5>添加新笔记</h5>
+		<button id="addNoteBtn" class="am-btn am-btn-default am-btn-xs">
+		  <i class="am-icon-cog"></i>
+		  添加
+		</button>
+		<include file="Notes/addNote" />
+	</div>
+
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+	  <div class="am-list-news-bd">
+			<h5>笔记列表</h5>
+	    <ul class="am-list">
+	      <!--下边是模板，供jquery调用-->
+	      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
+          <p class="am-list-item-hd"></p>
+	        <div class="am-u-sm-4 am-list-thumb"></div>
+	        <div class="am-u-sm-8 am-list-main">
+	          <div class="am-list-item-text"></div>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+</div>
+
+<script>
+	(function() {
+		$('#addNoteBtn').click(function() {
+			if ($('#addNoteContainer').css('display') == 'none') {
+				$('#addNoteContainer').slideDown("fast", function() {
+					$('#addNoteBtn').html('<i class="am-icon-cog"></i> 收起');
+				});
+			} else {
+				$('#addNoteContainer').slideUp("fast", function() {
+					$('#addNoteBtn').html('<i class="am-icon-cog"></i> 添加');
+				});
+			}
+		});
+	})();
+</script>

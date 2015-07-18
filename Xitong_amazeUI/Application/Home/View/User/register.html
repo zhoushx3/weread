@@ -1,0 +1,31 @@
+<link rel="stylesheet/less" type="text/css" href="__PUBLIC__/css/register.less">
+
+	<div class="container">
+
+		<form method="post" action="__URL__/addUsers">
+		  <div>
+		    <label for="username">用户名</label>
+	      <input type="text" class="form-control" name="username" placeholder="username">
+		  </div>
+		  <div>
+		    <label for="email">邮箱</label>
+	      <input type="email" class="form-control" name="email" placeholder="1@qq.com">
+		  </div>
+		  <div>
+		    <label for="password">密码</label>
+	      <input type="password" class="form-control" name="password" placeholder="password">
+		  </div>
+		  <div>
+		    <label for="repassword">确认密码</label>
+	      <input type="password" class="form-control" name="repassword" placeholder="password">
+		  </div>
+		  
+		  <div class="register_bt">
+	      <button type="submit" class="btn btn-default">注 册</button>
+	  		<a href="{:U(login)}" class="signIn">已注册? 返回登录</a>
+		  </div>
+		</form>
+	</div>
+
+	<div class="clear"></div>
+
