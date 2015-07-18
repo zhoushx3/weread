@@ -1,0 +1,76 @@
+body, div, form, p, input, ul, li {margin: 0; padding: 0}
+a, a:hover {text-decoration: none}
+* {font-family: "Microsoft Yahei"}
+li {list-style-type: none}
+
+@whole_color: #d4d4d4;
+
+#header {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+	padding-left: 20px;
+	background-color: #bbb;
+}
+
+h5 {
+	font-weight: bold;
+	display: block;
+	padding-left: 10px;
+	border-left: 2px solid #000;
+}
+
+.hidden_menu {
+	background: #fafafa;
+	display: none;
+	z-index: 20;
+	&.active {
+		display: block;
+		width: 100px;
+		position: absolute;
+		right: -0;
+		top: 43px;
+	}
+	li {
+		width: 80px;
+		text-align: center;
+		color: #fff;
+		line-height: 30px;
+		margin-top: 1px;
+		border: 1px solid #d4d4d4;
+		border-radius: 3px;
+		cursor: pointer;
+		a {
+			font-size: 13px;
+		}
+		&:hover a {
+			font-size: 15px;
+		}
+	}
+}
+
+.navbar-inner {
+	height: 40px;
+}
+
+
+
+
+@media (max-width: 767px) {
+	.wideShow {
+		display: none;
+	}
+	.shortShow {
+		display: block;
+	}
+}
+
+@media (min-width: 768px) {
+	.shortShow {
+		display: none;
+	}
+	a.showMore, a.show {
+		display: none;
+	}
+}
